@@ -1,7 +1,6 @@
 /* Question: What are the most optimal skills to learn?
 - High demand skills and high associated salary
-- concentrate on remote positions with specified salary
-
+- concentrate on jobs in the UK 
 */
 
 WITH skills_demand AS (
@@ -14,8 +13,10 @@ WITH skills_demand AS (
     INNER JOIN skills_dim ON skills_job_dim.skill_id = skills_dim.skill_id
     WHERE
         job_title_short = 'Data Analyst' AND
-        salary_year_avg IS NOT NULL AND
-        job_work_from_home = True
+        job_work_from_home = True AND
+        --job_location = 'United Kingdom' : Use this line for UK related jobs
+        salary_year_avg IS NOT NULL
+       
     GROUP BY
         skills_dim.skill_id
 ) , average_salary AS (
@@ -28,8 +29,9 @@ WITH skills_demand AS (
     INNER JOIN skills_dim ON skills_job_dim.skill_id = skills_dim.skill_id
     WHERE
         job_title_short = 'Data Analyst' AND
-        salary_year_avg IS NOT NULL AND
-        job_work_from_home = True
+        job_work_from_home = True AND
+        --job_location = 'United Kingdom' AND
+        salary_year_avg IS NOT NULL
     GROUP BY
         skills_dim.skill_id
 )
@@ -47,4 +49,4 @@ WHERE
 ORDER BY
     avg_salary DESC,
     demand_count DESC 
-LIMIT 25;
+LIMIT 10;
