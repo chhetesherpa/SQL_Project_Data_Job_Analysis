@@ -1,6 +1,10 @@
+# Project: Data Analytics Job Market in the United Kingdom
+
 # Introduction
 
-This project focuses on data-science and data-analytics related jobs posted in 2023 in the United Kingdom. The aim of the project is to provide insights on the job market in the UK for Data Analysts. 
+In today's data-driven world, the demand for skilled professionals in data science and analytics has never been greater. As organizations across industries recognize the value of harnessing data to drive informed decision-making and gain competitive advantage, the role of the data analyst has become increasingly vital. For aspiring data analysts, understanding the job market landscape, acquiring the necessary skills, and staying abreast of industry trends are paramount to success in this dynamic field
+
+In this project, we will delve into the intricacies of data-analytics job market. I will be particularly focusing in the United Kingdom Job Market in 2023. The overall aim of this project is to offer direction to the aspiring data analysts for prioritizing relevent skills and job-search-strategies so they can better position themselves for a rewarding career in the field of data-analytics. 
 
 For SQL queries, please visit my repo here: [project_sql](/project_sql/)
 
@@ -11,15 +15,15 @@ The project was developed as a part of my learning experience to hone my SQL ski
 I aim to answer below questions through my SQL queries:
 1. What are the top-paying data analyst jobs in the United Kingdom in 2023?
 2. What skills are required for these top-paying jobs?
-3. What skills are most in demand for data analysts in the United Kingdom?
-4. Which skills are associated with higher salaries in the UK?
-5. What are the most optimal skills to learn to stand out in the Job Market for Data Analysts?
+3. What skills are most in-demand for data analysts in the United Kingdom?
+4. Which skills are associated with higher salaries in the United Kingdom?
+5. What are the most optimal skills to learn to stand out in the overall Job Market for Data Analysts in general?
 
 # Tools I Used
 
 For this project, I used the below tools:
 
-**SQL**: The backbone of my analysis, that allowed me to query the database and generate critical insights.
+**SQL**: The core database programming language of my analysis, that allowed me to query the database and generate critical insights.
 
 **PostgreSQL**: The chosen database management system, ideal for handling the job posting data.
 
@@ -49,12 +53,13 @@ LEFT JOIN company_dim ON job_postings_fact.company_id = company_dim.company_id
 WHERE
     job_title_short = 'Data Analyst' AND
     job_location LIKE  '%United King%' AND
+    --job_schedule_type = 'Full-time' AND (This query can be used to filter out only Full-time jobs)
     salary_year_avg IS NOT NULL
 ORDER BY
     salary_year_avg DESC
 LIMIT 10
 ```
-Here's the breakdown of the top full-time data analyst jobs in the UK in 2023:
+Here's the breakdown of the top data analyst jobs in the UK in 2023:
 
 Wide Salary Range: Top 10 paying data analyst roles span from $180,000 to $75,000, indicating significant salary potential in the field.
 
@@ -99,13 +104,13 @@ ORDER BY
 ```
 
 Here's the breakdown of the most demanded skills for the top 10 highest paying data analyst jobs in 2023:
-**EXCEL** and **Python** are leading with a count of 5
+
+**EXCEL** and **Python** are leading with a count of 5. Despite the emerging new data technologies and tools, excel continues to be relevent in the data analytics job market, at least in the United Kingdom. 
 
 **Tableau** and **SQL** are in the second place with a count of 3 each.
 
 Other skills that are sought after are: R, Power BI, SAS, Jupyter, Flow, Looker, git, Snowflake, Databricks, etc. 
 
-These results shows that companies are still finding excel a valuable tool in data analytics. 
 
 ![Top Skills by Skill Count](assets/Skills.png)
 
@@ -130,8 +135,8 @@ LIMIT 5
 ```
 Here's the breakdown of the most demanded skills for data analysts in 2023 in the UK.
 
-SQL and Excel remain fundamental, emphasizing the need for strong foundational skills in data processing and spreadsheet manipulation.
-Programming and Visualization Tools like Python, Tableau, and Power BI are essential, pointing towards the increasing importance of technical skills in data storytelling and decision support.
+**SQL** and **Excel** remain fundamental, emphasizing the need for strong foundational skills in data processing and spreadsheet manipulation.
+Programming and Visualization Tools like **Python**, **Tableau**, and **Power BI** are essential, pointing towards the increasing importance of technical skills in data storytelling and decision support.
 
 | Skills   | Demand Count |
 |----------|--------------|
@@ -149,7 +154,7 @@ Exploring the average salaries associated with different skills revealed which s
 ```sql
 SELECT 
     skills,
-    ROUND(AVG(salary_year_avg),0) AS avg_salary
+    ROUND(AVG(salary_year_avg),0) AS avg_salary -- Rounding off values to a more readable format
 FROM job_postings_fact
 INNER JOIN skills_job_dim ON job_postings_fact.job_id = skills_job_dim.job_id
 INNER JOIN skills_dim ON skills_job_dim.skill_id = skills_dim.skill_id
@@ -180,7 +185,7 @@ Top Skills by Average Salary in the UK in 2023:
 |   azure    |    86,400  |
 |    sap     |    86,400  |
 
-### 5. Most Optimal Skills to Learn in the Job Market
+### 5. Most Optimal Skills to Learn in the Job Market in general
 
 This query aimed to identify the most desired skills that corelates with high paying jobs so job hunters can focus strategically to develop their skills.
 
@@ -285,4 +290,4 @@ Delving into SQL for this data project felt akin to embarking on a new journey. 
 **5. Optimal Skills for Job Market Value:** Python emerges as the leader in demand and salary offers, positioning it as one of the most advantageous skills for data analysts to acquire in order to maximize their market value.
 
 # Conclusions
-This project enabled me to strengthen my SQL expertise and gain valuable insights into the data analyst job market in the UK. The results obtained from the analysis offer direction for prioritizing skill development and job search strategies. Aspiring data analysts can enhance their prospects in a fiercely competitive job market by emphasizing skills that are both in high demand and offer lucrative salaries. This analysis underscores the significance of ongoing learning and adaptability to stay abreast of emerging trends in the dynamic field of data analytics.
+This project enabled me to strengthen my SQL expertise and gain valuable insights into the data analyst job market in the UK. The results obtained from the analysis offer direction for prioritizing skill development and job search strategies. Aspiring data analysts can enhance their prospects in a fiercely competitive job market by emphasizing skills that are both in high demand and offer lucrative salaries. This analysis underscores the significance of ongoing learning and adaptability to stay informed of emerging trends in the dynamic field of data analytics.
