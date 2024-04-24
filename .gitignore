@@ -1,4 +1,7 @@
 /.vscode
 /csv_files
 /sql_load
+/assets
+/postgres.session.sql
+/sql_course.session.sql
 
